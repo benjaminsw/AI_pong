@@ -156,7 +156,7 @@ class PongGame:
         pygame.display.flip()
         #record the total score
         self.tally = self.tally + score
-        print "Tally is " + str(self.tally)
+        print("Tally is " + str(self.tally))
         #return the score and the surface data
         return[score, image_data]
 
