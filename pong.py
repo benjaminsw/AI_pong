@@ -49,6 +49,7 @@ def updateBall(paddleXPos, ballXPos, ballYPos, ballXDirection, ballYDirection):
     #update x and y position for ball
     ballXPos = ballXPos + ballXDirection * BALL_X_SPEED
     ballYPos = ballYPos + ballYDirection * BALL_Y_SPEED
+    score = 0
 
     #check for the collistion on the paddle
     if(ballXPos <= PADDLE_BUFFER + PADDLE_WIDTH and ballXPos + BALL_HEIGHT >= paddleXPos and ballXPos + BALL_HEIGHT <= paddleXPos + PADDLE_HEIGHT):
@@ -68,7 +69,8 @@ def updateBall(paddleXPos, ballXPos, ballYPos, ballXDirection, ballYDirection):
     elif (ballYPos >= WINDOW_HEIGHT - BALL_HEIGHT):
         ballYPos = WINDOW_HEIGHT - BALL_HEIGHT
         ballYDirection = -1
-    return [score, paddleYPos, ballXPos, ballYPos, ballXDirection, ballYDirection]
+
+    return [score, paddleXPos, ballXPos, ballYPos, ballXDirection, ballYDirection]
 
     #update the paddle position
 
