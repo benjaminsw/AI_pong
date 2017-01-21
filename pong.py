@@ -130,4 +130,31 @@ class PongGame:
         #draw the ball
         drawBall(self.ballXPos, self.ballYPos)
         #copy the pixel from our surface to a 3D array. we'll use this for RL
+        image_data = pygame.surfarray.array3d(pygame.display.get_surface())
+        #update the window
+        pygame.display.flip()
+        #return our surface data
+        return image_data
+
+    #update our screen
+    def getNextFrame(self, action):
+        pygame.event.pump()
+        score = 0
+        screen.fill(BLACK)
+        #update our paddle
+        self.paddleYPos = updatePaddle(action, self.paddleYPos)
+        drawPaddle(self.paddleYPos)
+        #update our vars by uodating ball position
+        [score, self.ballXDirection, self.ballXPos, self.ballYPos, self.ballXDirection, self.ballYPos, self.ballXDirection, self.ballYDirection] = updateBall(self.paddleYPos, self.paddleXpos, self.ballXDirection, self.ballYDirection)
+        #draw the ball
+        drawBall(self.ballXPos, self.ballYPos)
+        #get the surface data
+        image_data = pygame.surfarray.array3d(pygame.display.get_surface())
+        #update the window
+        pygame.display.flip()
+        #record the total score
+        self.tally = self.tally + score
+        print "Tally is " + str(self.tally)
+        #return the score and the surface data
+        return[score, image_data]
 
